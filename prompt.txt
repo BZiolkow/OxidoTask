@@ -1,0 +1,5 @@
+Change provided text into HTML code:
+Use appropriate HTML tags for headings, paragraphs, and lists.
+Suggest places for images that could be included in the code by including <img src="image_placeholder.jpg" alt="[prompt]">, with a descriptive separeted by commas prompts in english, for each image that can be used to generate that image. 
+Include a caption under each image using appropriate HTML tags.
+As the response type only the code without any other text, also include only parts between <body> and </body>, do not include <body> and </body> tags.
