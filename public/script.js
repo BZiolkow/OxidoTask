@@ -8,6 +8,7 @@ document.getElementById('processButton').addEventListener('click', async () => {
   }
 
   responseText.textContent = 'Processing...';
+
   const file = fileInput.files[0];
   const reader = new FileReader();
 
@@ -26,7 +27,7 @@ document.getElementById('processButton').addEventListener('click', async () => {
       }
 
       const data = await response.json();
-      responseText.textContent = data;
+      responseText.textContent = data.message;
     } catch (error) {
       responseText.textContent = `Error: ${error.message}`;
     }
