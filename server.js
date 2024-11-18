@@ -26,6 +26,19 @@ const readPromptFile = () => {
   });
 };
 
+
+const saveToHTMLFile = (content) => {
+  const htmlContent = content;
+
+  fs.writeFile(path.join(__dirname, 'artykul.html'), htmlContent, (err) => {
+    if (err) {
+      console.error('Error writing HTML file:', err);
+    } else {
+      console.log('HTML file saved as artykul.html');
+    }
+  });
+};
+
 app.post('/process-text', async (req, res) => {
   const { fileContent } = req.body;
 
@@ -55,7 +68,12 @@ app.post('/process-text', async (req, res) => {
       }
     );
 
-    res.json(response.data.choices[0].message.content);
+
+    const generatedContent = response.data.choices[0].message.content;
+
+    saveToHTMLFile(generatedContent);
+
+    res.json({ message: 'Article saved as artykul.html' });
   } catch (error) {
     console.error('Error:', error.message);
     res.status(500).json({ error: 'Error communicating with OpenAI API' });
