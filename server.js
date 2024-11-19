@@ -26,17 +26,47 @@ const readPromptFile = () => {
   });
 };
 
-
 const saveToHTMLFile = (content) => {
   const htmlContent = content;
 
-  fs.writeFile(path.join(__dirname, 'artykul.html'), htmlContent, (err) => {
+  const publicDirPath = path.join(__dirname, 'public');
+  if (!fs.existsSync(publicDirPath)) {
+    fs.mkdirSync(publicDirPath);
+  }
+
+  const filePath = path.join(publicDirPath, 'artykul.html');
+  fs.writeFile(filePath, htmlContent, (err) => {
     if (err) {
       console.error('Error writing HTML file:', err);
     } else {
-      console.log('HTML file saved as artykul.html');
+      console.log(`HTML file saved as artykul.html in the 'public' folder.`);
     }
   });
+};
+const mergeHTMLFiles = () => {
+  const templateFilePath = path.join(__dirname, 'public', 'szablon.html');
+  const articleFilePath = path.join(__dirname, 'public', 'artykul.html');
+  const outputFilePath = path.join(__dirname, 'public', 'podglad.htm');
+
+  try {
+
+    const templateContent = fs.readFileSync(templateFilePath, 'utf-8');
+
+
+    const articleContent = fs.readFileSync(articleFilePath, 'utf-8');
+
+
+    const combinedContent = templateContent.replace(
+      '<body>',
+      `<body>\n${articleContent}`
+    );
+
+
+    fs.writeFileSync(outputFilePath, combinedContent, 'utf-8');
+    console.log('File podglad.htm has been created successfully in the public folder.');
+  } catch (error) {
+    console.error('Error merging HTML files:', error.message);
+  }
 };
 
 app.post('/process-text', async (req, res) => {
@@ -68,12 +98,12 @@ app.post('/process-text', async (req, res) => {
       }
     );
 
-
     const generatedContent = response.data.choices[0].message.content;
 
     saveToHTMLFile(generatedContent);
+    mergeHTMLFiles();
 
-    res.json({ message: 'Article saved as artykul.html' });
+    res.json({ message: 'Article saved as artykul.html in the public folder.' });
   } catch (error) {
     console.error('Error:', error.message);
     res.status(500).json({ error: 'Error communicating with OpenAI API' });
