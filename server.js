@@ -46,7 +46,7 @@ const saveToHTMLFile = (content) => {
 const mergeHTMLFiles = () => {
   const templateFilePath = path.join(__dirname, 'public', 'szablon.html');
   const articleFilePath = path.join(__dirname, 'public', 'artykul.html');
-  const outputFilePath = path.join(__dirname, 'public', 'podglad.htm');
+  const outputFilePath = path.join(__dirname, 'public', 'podglad.html');
 
   try {
 
