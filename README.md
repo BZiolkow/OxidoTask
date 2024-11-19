@@ -15,8 +15,7 @@ To install Oxido Task , follow these steps:
 1. Clone the repository: **`git clone https://github.com/BZiolkow/OxidoTask.git`**
 2. Navigate to the project directory: **`cd OxidoTask`**
 3. Install dependencies: **`npm install`**
-4. Build the project: **`npm run build`**
-5. Start the project: **`npm start`**
+4. Start the project: **`npm start`**
 
 ## **Usage**
 
@@ -30,8 +29,7 @@ To use Oxido Task, follow these steps:
    ```plaintext
    OPENAI_API_KEY=your-api-key-here
 3. Modify the source code to fit your needs.
-4. Build the project: **`npm run build`**
-5. Start the project: **`npm start`**
-6. Go to http://localhost:3000/ in your browser.
-7. Select an article and press the button to send it to Open AI.
-8. The raw html code will be included in public directory as "artykul.html", while the preview version ready to be displayed will be saved as "podglad.html".
+4. Start the project: **`npm start`**
+5. Go to http://localhost:3000/ in your browser.
+6. Select an article and press the button to send it to Open AI.
+7. The html code will be saved in public directory as "artykul.html", while the preview version ready to be displayed will be saved as "podglad.html".
